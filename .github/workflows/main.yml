@@ -1,46 +1,13 @@
-name: Continuous Integration
-
-# This action works with pull requests and pushes on the main branch
-on:
-  pull_request:
-  push:
-    branches: [main]
-
+name: Prettier And Test
+run-name: Running Prettier And Tests
+on: [push]
 jobs:
-  prettier:
-    name: Prettier Check
+  PrettierTests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Run Prettier
-        id: prettier-run
-        uses: rutajdash/prettier-cli-action@v1.0.0
-        with:
-          config_path: ./.prettierrc
-
-      # This step only runs if prettier finds errors causing the previous step to fail
-      # This steps lists the files where errors were found
-      - name: Prettier Output
-        if: ${{ failure() }}
-        shell: bash
-        run: |
-          echo "The following files are not formatted:"
-          echo "${{steps.prettier-run.outputs.prettier_output}}"
-  test:
-    runs-on: ubuntu-latest
-    steps:  
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install
-        # NOTE: this pins the action to a specific commit sha for security
-        # reasons but you can also use a version tag if desired. For example:
-        # ianwalter/playwright-container@v3.0.0
-        uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
-        with:
-          args: npm i && npx playwright install
-      - name: Test
-        uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
-        with:
-          args: npm test
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: npm i
+      - run: npm run format
+      - run: npx playwright install
+      - run: npm run test
