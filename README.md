@@ -10,6 +10,6 @@ It will use Svelte Kit, Tailwind CSS, Firebase and Auth0. The courses will not b
 
 ### How To Run Coddem Locally
 
-To run it locally first clone this repo, then install the npm packages using `npm install`, `pnpm install` or `yarn add`. Then you can just run it using `npm run dev` or the equivalent in the package manager you use. To run the tests you first need to install playwright using `npx playwright install` or the equivalent in you package manager. Then you can just run `npm run test` or again the equivalent in the package manager you use. 
+To run it locally first clone this repo, then install the npm packages using `npm install`, `pnpm install` or `yarn add`. Then you can just run it using `npm run dev` or the equivalent in the package manager you use. 
 
 If you would like to contribute to Coddem then you can look at the CONTRIBUTING.md file in the root folder of this repo. The Coddem team also will post updates on the development of Coddem on [this blog](https://blog.coddem.com).

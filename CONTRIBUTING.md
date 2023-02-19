@@ -6,11 +6,11 @@ Please follow these guidelines when contributing to this repo, as it makes it ea
 
 ### What we are looking for
 
-We would love for you to contribute to Coddem, and there are plenty of things to do. You can do anything from writing tutorials on how to contribute to and use Coddem, or helping write documentation, like this file that you are reading right now, writing code or tests, spotting bugs and reporting them, or even just giving us new feature ideas. These contributions are all welcomed. If you need help with something or would like a feature to be added please, instead of creating an issue, create a new discussion in the discussions tab.
+We would love for you to contribute to Coddem, and there are plenty of things to do. You can do anything from writing tutorials on how to contribute to and use Coddem, or helping write documentation, like this file that you are reading right now, writing code, spotting bugs and reporting them, or even just giving us new feature ideas. These contributions are all welcomed. If you need help with something or would like a feature to be added please, instead of creating an issue, create a new discussion in the discussions tab.
 
 ### Rules
 
-We do have some rules for contributing. The most important and first one is to be kind and respectful. Don't harass, discriminate, or be mean to anyone. For more info on that look at our code of conduct (coming). Please also don't ask for help or add feature requests in the issues tab. Please create a discussion instead. If you add a bit of code to Coddem, it isn't required but it is great if you could write some tests using playwright for it. Also functions over classes, and make sure to format everything using `npm run format` before submitting code. Make sure to use Typescript too.
+We do have some rules for contributing. The most important and first one is to be kind and respectful. Don't harass, discriminate, or be mean to anyone. For more info on that look at our code of conduct (coming). Please also don't ask for help or add feature requests in the issues tab. Please create a discussion instead. Also please don't write classes. Make sure to format everything using `npm run format` before submitting code. Typescript is also required.
 
 ### First Contributors
 
