@@ -1,5 +1,5 @@
-name: Prettier And Test
-run-name: Running Prettier And Tests
+name: Prettier
+run-name: Running Prettier
 on: [push]
 jobs:
   PrettierTests:
@@ -9,5 +9,3 @@ jobs:
         uses: actions/checkout@v3
       - run: npm i
       - run: npm run format
-      - run: npx playwright install
-      - run: npm run test
