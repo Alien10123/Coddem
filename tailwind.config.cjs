@@ -169,6 +169,17 @@ module.exports = {
 					'"Segoe UI Emoji"',
 					'"Segoe UI Symbol"',
 					'"Noto Color Emoji"',
+				],
+				code: [
+					'"Fira Code"',
+					'ui-monospace',
+					'SFMono-Regular',
+					'Menlo',
+					'Monaco',
+					'Consolas',
+					'"Liberation Mono"',
+					'"Courier New"',
+					'monospace',
 				]
 			},
 			screens: {
