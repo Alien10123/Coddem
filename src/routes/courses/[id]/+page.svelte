@@ -1,36 +1,38 @@
 <script lang="ts">
-	import { EditorView, basicSetup } from 'codemirror';
-	import { keymap } from '@codemirror/view';
-	import { indentWithTab } from '@codemirror/commands';
-	import { javascript } from '@codemirror/lang-javascript';
-	import { boysAndGirls } from 'thememirror';
-	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
 
-	if (browser) {
-		onMount(() => {
-			if (document.querySelector('.cm-editor') === null) {
-				// let test = EditorView.baseTheme({
-				// 	'.cm-editor': {
-				// 		fontFamily: '"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
-				// 	}
-				// });
-				let view = new EditorView({
-					extensions: [
-						basicSetup,
-						javascript(),
-						boysAndGirls,
-						// @ts-ignore
-						keymap.of(indentWithTab)
-					]
-				});
-				console.log(view.dom);
-				document.getElementById('code')?.appendChild(view.dom);
-			}
-		});
-	}
+	// import { EditorView, basicSetup } from 'codemirror';
+	// import { keymap } from '@codemirror/view';
+	// import { indentWithTab } from '@codemirror/commands';
+	// import { javascript } from '@codemirror/lang-javascript';
+	// import { boysAndGirls } from 'thememirror';
+	// import { browser } from '$app/environment';
+	// import { onMount } from 'svelte';
+
+	import CodemirrorEditor from "../../../components/CodemirrorEditor.svelte";
+
+	// if (browser) {
+	// 	onMount(() => {
+	// 		if (document.querySelector('.cm-editor') === null) {
+	// 			// let test = EditorView.baseTheme({
+	// 			// 	'.cm-editor': {
+	// 			// 		fontFamily: '"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+	// 			// 	}
+	// 			// });
+	// 			let view = new EditorView({
+	// 				extensions: [
+	// 					basicSetup,
+	// 					javascript(),
+	// 					boysAndGirls,
+	// 					// @ts-ignore
+	// 					keymap.of(indentWithTab)
+	// 				]
+	// 			});
+	// 			console.log(view.dom);
+	// 			document.getElementById('code')?.appendChild(view.dom);
+	// 		}
+	// 	});
+	// }
 </script>
-
 <div class="w-screen h-screen bg-slate-1000 overflow-y-hidden">
 	<div class="w-screen bg-white h-8" />
 	<div class="flex w-screen h-[calc(100vh-64px)]">
@@ -79,7 +81,8 @@
 			</div>
 		</div>
 		<div class="grow h-full flex flex-col" id="editor">
-			<div class="grow w-full min-h-[10%]" id="code" />
+			<!-- <div class="grow w-full min-h-[10%]" id="code" /> -->
+			<CodemirrorEditor grow={true} />
 			<div class="h-12 border-t-2 border-slate-500 min-h-[10%]">
 				<p class="text-md text-white font-code ml-2 mt-2">Hello World</p>
 			</div>
@@ -99,7 +102,7 @@
 	</style>
 </svelte:head>
 
-<style>
+<!-- <style>
 	#code :global(.cm-gutter) {
 		@apply font-code;
 	}
@@ -119,4 +122,4 @@
 	#code :global(.cm-activeLine), #code :global(.cm-activeLineGutter) {
 		@apply bg-gray-800;
 	}
-</style>
+</style> -->
