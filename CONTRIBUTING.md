@@ -26,7 +26,6 @@ To submit code first create a fork of the code. Do the changes in your fork. If 
 
 If you find a security vulnerability, do NOT open an issue. Email security@coddem.com instead. Even if you are unsure if it is a security, still email us, as there is no harm in telling us.
 
-
 #### Normal Bugs
 
 To report a bug just create an issue, or if you are having problems getting something working on your computer create a discussion.

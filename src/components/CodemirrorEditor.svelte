@@ -1,16 +1,16 @@
 <script>
-    import { EditorView, basicSetup } from 'codemirror';
+	import { EditorView, basicSetup } from 'codemirror';
 	import { keymap } from '@codemirror/view';
 	import { indentWithTab } from '@codemirror/commands';
 	import { javascript } from '@codemirror/lang-javascript';
 	import { boysAndGirls } from 'thememirror';
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-    
-    export let height = ""
-    export let minHeight = ""
-    export let maxHeight = ""
-    export let grow = true
+
+	export let height = '';
+	export let minHeight = '';
+	export let maxHeight = '';
+	export let grow = true;
 
 	if (browser) {
 		onMount(() => {
@@ -36,7 +36,10 @@
 	}
 </script>
 
-<div class={`${grow ? 'grow' : ''} w-full ${height} ${minHeight} ${maxHeight} overflow-scroll`} id="code" />
+<div
+	class={`${grow ? 'grow' : ''} w-full ${height} ${minHeight} ${maxHeight} overflow-scroll`}
+	id="code"
+/>
 
 <svelte:head>
 	<style>
@@ -63,11 +66,13 @@
 		@apply bg-slate-1000;
 	}
 
-	#code :global(.cm-editor), #code :global(.cm-gutters) {
+	#code :global(.cm-editor),
+	#code :global(.cm-gutters) {
 		@apply bg-slate-1000;
 	}
 
-	#code :global(.cm-activeLine), #code :global(.cm-activeLineGutter) {
+	#code :global(.cm-activeLine),
+	#code :global(.cm-activeLineGutter) {
 		@apply bg-gray-800;
 	}
 </style>

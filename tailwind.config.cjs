@@ -127,8 +127,8 @@ module.exports = {
 			sm: '0.875rem',
 			md: '1rem',
 			DEFAULT: '1.125rem',
-			'lg': '1.25rem',
-			'xl': '1.5rem',
+			lg: '1.25rem',
+			xl: '1.5rem',
 			'2xl': '1.875rem',
 			'3xl': '2.25rem',
 			'4xl': '3rem',
@@ -151,7 +151,7 @@ module.exports = {
 					'"Apple Color Emoji"',
 					'"Segoe UI Emoji"',
 					'"Segoe UI Symbol"',
-					'"Noto Color Emoji"',
+					'"Noto Color Emoji"'
 				],
 				sourceSans: [
 					'"Source Sans Pro"',
@@ -168,7 +168,7 @@ module.exports = {
 					'"Apple Color Emoji"',
 					'"Segoe UI Emoji"',
 					'"Segoe UI Symbol"',
-					'"Noto Color Emoji"',
+					'"Noto Color Emoji"'
 				],
 				code: [
 					'"Fira Code"',
@@ -179,7 +179,7 @@ module.exports = {
 					'Consolas',
 					'"Liberation Mono"',
 					'"Courier New"',
-					'monospace',
+					'monospace'
 				]
 			},
 			screens: {

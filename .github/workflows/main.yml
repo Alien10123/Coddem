@@ -2,10 +2,10 @@ name: Prettier
 run-name: Running Prettier
 on: [push]
 jobs:
-  PrettierTests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: npm i
-      - run: npm run format
+    PrettierTests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository code
+              uses: actions/checkout@v3
+            - run: npm i
+            - run: npm run format
