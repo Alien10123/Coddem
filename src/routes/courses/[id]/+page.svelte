@@ -9,6 +9,7 @@
 	// import { onMount } from 'svelte';
 
 	import CodemirrorEditor from "../../../components/CodemirrorEditor.svelte";
+	import LearningTab from "../../../components/LearningTab.svelte";
 
 	// if (browser) {
 	// 	onMount(() => {
@@ -36,7 +37,7 @@
 <div class="w-screen h-screen bg-slate-1000 overflow-y-hidden">
 	<div class="w-screen bg-white h-8" />
 	<div class="flex w-screen h-[calc(100vh-64px)]">
-		<div class="w-14 h-full bg-slate-900 border-r-2 border-slate-500 overflow-scroll">
+		<!-- <div class="w-14 h-full bg-slate-900 border-r-2 border-slate-500 overflow-scroll">
 			<div class="bg-slate-1000 h-7 w-full flex justify-center place-items-center gap-1 ">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -79,11 +80,12 @@
 					consequuntur cum.
 				</p>
 			</div>
-		</div>
+		</div> -->
+		<LearningTab lessonName="Editor Layouts" pageName="The Basic Layout" pageContent="This is a very basic editor, useful for basic programming. It has a code editor (powered by CodeMirror), a learning tab and an output. More complex layouts might include file tabs along with a file explorer. The learning tab is still being worked as of writing, mainly some buttons need to be added at the button. More will need to be added but for now, we are just working on the basic layouts. Then resizable layouts will be added. And then the learning tab will be improved with markdown, elements for tips and hints and more." />
 		<div class="grow h-full flex flex-col" id="editor">
 			<!-- <div class="grow w-full min-h-[10%]" id="code" /> -->
-			<CodemirrorEditor grow={true} />
-			<div class="h-12 border-t-2 border-slate-500 min-h-[10%]">
+			<CodemirrorEditor grow={true} minHeight="min-h-[10%]" />
+			<div class="h-12 min-h-12 border-t-2 border-slate-500">
 				<p class="text-md text-white font-code ml-2 mt-2">Hello World</p>
 			</div>
 		</div>

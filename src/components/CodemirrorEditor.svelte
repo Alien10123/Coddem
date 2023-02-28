@@ -7,7 +7,9 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
     
-    export let height = "min-h-[10%]"
+    export let height = ""
+    export let minHeight = ""
+    export let maxHeight = ""
     export let grow = true
 
 	if (browser) {
@@ -34,7 +36,7 @@
 	}
 </script>
 
-<div class={`${grow ? 'grow' : ''} w-full ${height}`} id="code" />
+<div class={`${grow ? 'grow' : ''} w-full ${height} ${minHeight} ${maxHeight} overflow-scroll`} id="code" />
 
 <svelte:head>
 	<style>
