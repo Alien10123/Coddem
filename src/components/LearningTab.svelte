@@ -9,19 +9,19 @@
 	<div class="flex h-7 w-full place-items-center justify-center gap-1 bg-slate-1000 ">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			width="32"
-			height="32"
-			viewBox="0 0 24 24"
 			fill="none"
+			viewBox="0 0 24 24"
+			stroke-width="1.5"
 			stroke="white"
-			stroke-width="1"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-			class="feather feather-book"
-			><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path
-				d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
-			/></svg
+			class="w-6 h-6"
 		>
+			<path
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+			/>
+		</svg>
+
 		<h2 class="font-notoSans font-bold text-white">Tutorial</h2>
 	</div>
 	<h3 class="ml-2 mt-3 text-xs text-gray-200">{lessonName}</h3>
