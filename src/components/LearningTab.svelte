@@ -1,4 +1,6 @@
 <script>
+	import {micromark} from 'micromark';
+
 	export let styles = 'w-14 h-full bg-slate-900 border-r-2 border-slate-500';
 	export let lessonName = '';
 	export let pageName = '';
@@ -30,7 +32,7 @@
 	</h1>
 	<div class="prose prose-invert">
 		<p class="ml-2 mt-3 w-[45ch] text-sm text-white">
-			{pageContent}
+			{@html micromark(pageContent)}
 		</p>
 	</div>
 </div>

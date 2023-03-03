@@ -11,6 +11,8 @@
 	export let minHeight = '';
 	export let maxHeight = '';
 	export let grow = true;
+	export let codeContents = ""
+	export let lang = javascript
 
 	if (browser) {
 		onMount(() => {
@@ -23,12 +25,15 @@
 				let view = new EditorView({
 					extensions: [
 						basicSetup,
-						javascript(),
+						lang(),
 						boysAndGirls,
 						// @ts-ignore
 						keymap.of(indentWithTab)
 					]
 				});
+				view.dispatch({
+					changes: {from: 0, insert: codeContents}
+				})
 				console.log(view.dom);
 				document.getElementById('code')?.appendChild(view.dom);
 			}
