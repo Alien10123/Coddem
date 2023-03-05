@@ -11,29 +11,54 @@
 	export let minHeight = '';
 	export let maxHeight = '';
 	export let grow = true;
-	export let codeContents = ""
-	export let lang = javascript
+	export let codeContents = '';
+	export let lang = javascript;
 
 	if (browser) {
 		onMount(() => {
 			if (document.querySelector('.cm-editor') === null) {
-				// let test = EditorView.baseTheme({
-				// 	'.cm-editor': {
-				// 		fontFamily: '"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
-				// 	}
-				// });
+				let test = EditorView.theme({
+					'.cm-scroller': {
+						background: 'rgb(38, 40, 49)'
+					},
+					'.cm-gutters': {
+						background: 'rgb(38, 40, 49)'
+					},
+					'.cm-content': {
+						fontFamily:
+							'"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+					},
+					'.cm-gutter': {
+						fontFamily:
+							'"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+					},
+					'.cm-activeLine': {
+						background: 'rgb(56 58 67)'
+					},
+					'.cm-activeLineGutter': {
+						background: 'rgb(56 58 67)'
+					},
+					'.cm-selectionLayer': {
+						zIndex: '30 !important'
+					},
+					'.cm-selectionBackground': {
+						background: 'rgb(189 194 208 / 0.4) !important'
+					}
+				}, { dark: true });
 				let view = new EditorView({
 					extensions: [
 						basicSetup,
 						lang(),
+						test,
 						boysAndGirls,
 						// @ts-ignore
-						keymap.of(indentWithTab)
+						keymap.of(indentWithTab),
+						EditorView.lineWrapping
 					]
 				});
 				view.dispatch({
-					changes: {from: 0, insert: codeContents}
-				})
+					changes: { from: 0, insert: codeContents }
+				});
 				console.log(view.dom);
 				document.getElementById('code')?.appendChild(view.dom);
 			}
@@ -59,25 +84,13 @@
 </svelte:head>
 
 <style>
-	#code :global(.cm-gutter) {
-		@apply font-code;
-	}
-
-	#code :global(.cm-content) {
-		@apply font-code;
-	}
-
-	#code :global(.cm-editor) {
-		@apply bg-slate-1000;
-	}
-
-	#code :global(.cm-editor),
+	/* #code :global(.cm-editor),
 	#code :global(.cm-gutters) {
 		@apply bg-slate-1000;
-	}
+	} */
 
-	#code :global(.cm-activeLine),
+	/* #code :global(.cm-activeLine),
 	#code :global(.cm-activeLineGutter) {
 		@apply bg-gray-800;
-	}
+	} */
 </style>
