@@ -41,10 +41,13 @@
 		"@fontsource/source-sans-pro": "^4.5.11",
 		"@types/codemirror": "^5.60.7",
 		"@types/dompurify": "^2.4.0",
+		"@webcontainer/api": "^1.0.2",
 		"codemirror": "^6.0.1",
 		"dompurify": "^3.0.0",
 		"firebase": "^9.17.1",
 		"micromark": "^3.1.0",
-		"thememirror": "^2.0.1"
+		"thememirror": "^2.0.1",
+		"xterm": "^5.1.0",
+		"xterm-addon-fit": "^0.7.0"
 	}
 }

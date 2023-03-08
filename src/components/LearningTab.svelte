@@ -1,13 +1,19 @@
 <script>
 	import {micromark} from 'micromark';
 
-	export let styles = 'w-14 h-full bg-slate-900 border-r-2 border-slate-500';
+	export let styles = 'bg-slate-900';
+	export let borderStyles = "border-r-2 border-slate-500"
+	export let width = '14'
+	export let height = 'full'
 	export let lessonName = '';
 	export let pageName = '';
 	export let pageContent = '';
+	export let button = false;
+	export let buttonText = 'Run Code'
+	export let buttonOnClick = () => {}
 </script>
 
-<div class={`${styles} overflow-scroll`}>
+<div class={`${styles} overflow-scroll w-${width} h-${height} ${borderStyles} min-w-14`}>
 	<div class="flex h-7 w-full place-items-center justify-center gap-1 bg-slate-1000 ">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -35,4 +41,9 @@
 			{@html micromark(pageContent)}
 		</p>
 	</div>
+	{#if button}
+		<div class={`fixed bottom-0 flex place-items-center bg-slate-1000 h-8 w-${width} justify-end px-4 ${borderStyles}`}>
+			<button on:click={buttonOnClick} class="cursor-pointer bg-blue-500 text-white px-3 py-2 rounded-md">{ buttonText }</button>
+		</div>
+	{/if}
 </div>

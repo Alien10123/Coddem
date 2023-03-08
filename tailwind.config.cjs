@@ -44,6 +44,27 @@ module.exports = {
 			17: '48rem',
 			18: '56rem'
 		},
+		minWidth: {
+			0: '0',
+			1: '0.25rem',
+			2: '0.5rem',
+			3: '0.75rem',
+			4: '1rem',
+			5: '1.5rem',
+			6: '2rem',
+			7: '3rem',
+			8: '4rem',
+			9: '5rem',
+			10: '6rem',
+			11: '8rem',
+			12: '12rem',
+			13: '16rem',
+			14: '24rem',
+			15: '32rem',
+			16: '40rem',
+			17: '48rem',
+			18: '56rem'
+		},
 		colors: {
 			'blue-100': '#cfe2fc',
 			'blue-200': '#a8cafa',
