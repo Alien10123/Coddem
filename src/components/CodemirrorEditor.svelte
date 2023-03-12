@@ -60,6 +60,8 @@
 				},
 				{ dark: true }
 			);
+			let addedStartingText = false;
+			let timer: NodeJS.Timeout | undefined;
 			let view = new EditorView({
 				extensions: [
 					basicSetup,
@@ -78,26 +80,28 @@
 							run: indentLess
 						}
 					]),
-					EditorView.lineWrapping
-					// EditorView.updateListener.of((v: ViewUpdate) => {
-					// 	if (v.docChanged) {
-					// 		clearTimeout(codeInputTimeout);
-					// 		codeInputTimeout = setTimeout(() => {
-					// 			console.log(v.state.doc.toString());
-					// 			code.set(v.state.doc.toString());
-					// 		}, 200);
-					// 	}
-					// })
+					EditorView.lineWrapping,
+					EditorView.updateListener.of((v: ViewUpdate) => {
+						if (v.docChanged && addedStartingText) {
+							clearTimeout(timer)
+							timer = setTimeout(() => {
+								$activeFile.contents = v.state.doc.toString()
+							}, 500)
+							console.log(1)
+						}
+					})
 				]
 			});
 			view.dispatch({
 				changes: { from: 0, insert: $activeFile.contents }
 			});
+			addedStartingText = true;
 			console.log(view.dom);
 			document.getElementById('code')?.appendChild(view.dom);
 
 			activeFile.subscribe((v) => {
 				if (v.contents !== oldActiveFile.contents) {
+					addedStartingText = false;
 					view.dispatch({
 						changes: {
 							from: 0,
@@ -106,6 +110,7 @@
 						}
 					})
 					oldActiveFile = v
+					addedStartingText = true;
 				}
 			})
 		}
