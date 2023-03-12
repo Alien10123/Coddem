@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { EditorView, basicSetup } from 'codemirror';
 	import { keymap, ViewUpdate } from '@codemirror/view';
-	import { indentWithTab } from '@codemirror/commands';
+	import { indentLess, indentWithTab, insertTab } from '@codemirror/commands';
 	import { javascript } from '@codemirror/lang-javascript';
 	import { boysAndGirls } from 'thememirror';
 	import { browser } from '$app/environment';
@@ -15,72 +15,101 @@
 	export let codeContents = '';
 	export let lang = javascript;
 
+	let activeFile: Writable<{
+		name: string;
+		lang: string;
+		svg: string;
+		contents: string;
+		active: boolean;
+		deleteable: boolean;
+	}> = getContext('active');
+	let oldActiveFile = $activeFile;
+
 	let code: Writable<string> = getContext('code');
 
-	if (browser) {
-		onMount(() => {
-			if (document.querySelector('.cm-editor') === null) {
-				let test = EditorView.theme(
-					{
-						'.cm-scroller': {
-							background: 'rgb(38, 40, 49)'
-						},
-						'.cm-gutters': {
-							background: 'rgb(38, 40, 49)'
-						},
-						'.cm-content': {
-							fontFamily:
-								'"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
-						},
-						'.cm-gutter': {
-							fontFamily:
-								'"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
-						},
-						'.cm-activeLine': {
-							background: 'rgb(56 58 67)'
-						},
-						'.cm-activeLineGutter': {
-							background: 'rgb(56 58 67)'
-						},
-						'.cm-selectionLayer': {
-							zIndex: '30 !important'
-						},
-						'.cm-selectionBackground': {
-							background: 'rgb(189 194 208 / 0.4) !important'
-						}
+	onMount(() => {
+		if (document.querySelector('.cm-editor') === null) {
+			let test = EditorView.theme(
+				{
+					'.cm-scroller': {
+						background: 'rgb(38, 40, 49)'
 					},
-					{ dark: true }
-				);
-				let codeInputTimeout: NodeJS.Timeout | undefined;
-				let view = new EditorView({
-					extensions: [
-						basicSetup,
-						lang(),
-						test,
-						boysAndGirls,
-						// @ts-ignore
-						keymap.of(indentWithTab),
-						EditorView.lineWrapping,
-						EditorView.updateListener.of((v: ViewUpdate) => {
-							if (v.docChanged) {
-								clearTimeout(codeInputTimeout);
-								codeInputTimeout = setTimeout(() => {
-									console.log(v.state.doc.toString());
-									code.set(v.state.doc.toString())
-								}, 200);
-							}
-						})
-					]
-				});
-				view.dispatch({
-					changes: { from: 0, insert: codeContents }
-				});
-				console.log(view.dom);
-				document.getElementById('code')?.appendChild(view.dom);
-				EditorView.updateListener;
-			}
-		});
-	}
+					'.cm-gutters': {
+						background: 'rgb(38, 40, 49)'
+					},
+					'.cm-content': {
+						fontFamily:
+							'"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+					},
+					'.cm-gutter': {
+						fontFamily:
+							'"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+					},
+					'.cm-activeLine': {
+						background: 'rgb(56 58 67)'
+					},
+					'.cm-activeLineGutter': {
+						background: 'rgb(56 58 67)'
+					},
+					'.cm-selectionLayer': {
+						zIndex: '30 !important'
+					},
+					'.cm-selectionBackground': {
+						background: 'rgb(189 194 208 / 0.4) !important'
+					}
+				},
+				{ dark: true }
+			);
+			let view = new EditorView({
+				extensions: [
+					basicSetup,
+					lang(),
+					test,
+					boysAndGirls,
+					keymap.of([
+						{
+							key: 'Tab',
+							preventDefault: true,
+							run: insertTab
+						},
+						{
+							key: 'Shift-Tab',
+							preventDefault: true,
+							run: indentLess
+						}
+					]),
+					EditorView.lineWrapping
+					// EditorView.updateListener.of((v: ViewUpdate) => {
+					// 	if (v.docChanged) {
+					// 		clearTimeout(codeInputTimeout);
+					// 		codeInputTimeout = setTimeout(() => {
+					// 			console.log(v.state.doc.toString());
+					// 			code.set(v.state.doc.toString());
+					// 		}, 200);
+					// 	}
+					// })
+				]
+			});
+			view.dispatch({
+				changes: { from: 0, insert: $activeFile.contents }
+			});
+			console.log(view.dom);
+			document.getElementById('code')?.appendChild(view.dom);
+
+			activeFile.subscribe((v) => {
+				if (v.contents !== oldActiveFile.contents) {
+					view.dispatch({
+						changes: {
+							from: 0,
+							to: view.state.doc.length,
+							insert: v.contents
+						}
+					})
+					oldActiveFile = v
+				}
+			})
+		}
+	});
 </script>
 
 <div
